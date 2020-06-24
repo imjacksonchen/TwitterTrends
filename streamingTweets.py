@@ -6,8 +6,9 @@ import json
 from config import createAPI
 
 class TweetStreamListener(tweepy.StreamListener):
+
     def on_status(self, status):
-        if status.retweeted_status:
+        if hasattr(status, 'retweeted_status'):
             return
         print(status.text)
 
@@ -26,4 +27,4 @@ if __name__ == "__main__":
     stream = tweepy.Stream(api.auth, streamListener)
 
     # search twitter for keyword
-    stream.filter(track=["fortnite"])
+    stream.filter(track=["black lives matter"])
